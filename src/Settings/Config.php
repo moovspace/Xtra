@@ -15,7 +15,7 @@ class Config
 	const SMTP_PASS = '';
 	const SMTP_HOST = '127.0.0.1';
 	const SMTP_PORT = 25; // 25, 587, 465
-	const SMTP_FROM_EMAIL = 'biuro@freszo.pl';
+	const SMTP_FROM_EMAIL = 'biuro@domain.here';
 	const SMTP_FROM_USER = 'Biuro';
 	const SMTP_TLS = false;
 	const SMTP_AUTH = false;
