@@ -165,6 +165,7 @@ class Upload
     }
 
     function UploadDir($dir = "media"){
+	$dir = preg_replace("/[^0-9a-zA-Z\/]/", "",$dir);
         $dir = ltrim($dir,'/');
         $dir = ltrim($dir,'.');
         $dir = ltrim($dir,'/');
