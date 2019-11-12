@@ -1,0 +1,10 @@
+{
+    "name": "moovspace/xtra",
+    "description": "Xtra Php Classes library",
+    "type": "library",
+    "require": {
+        "phpmailer/phpmailer": "^6.1"
+    },
+    "license": "MIT",
+    "minimum-stability": "stable"
+}
