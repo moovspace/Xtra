@@ -5,7 +5,7 @@ use \Exception;
 /**
  * Upload - upload multiple and single files from from or curl
  *
- * Form sample
+ * Form sample upload
  * <form enctype="multipart/form-data" method="post">
  *  Multiple files
  *  <input type="file" name="files[]" multiple>
