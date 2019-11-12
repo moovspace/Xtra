@@ -21,5 +21,13 @@ composer require moovspace/xtra:~1.0
         "moovspace/xtra": "~1.0"
     }
 }
+
+# Lub dodaj
+"repositories": [        
+        {
+            "type": "vcs",
+            "url": "https://github.com/moovspace/xtra"
+        }
+],
 ```
 
