@@ -1,13 +1,6 @@
 # Xtra
 Xtra Php Classes
 
-### Zaktualizuj zależności (dev)
-```bash
-composer update
-composer dump-autoload
-composer dump-autoload -o
-```
-
 ### Dodaj do swojego projektu
 ```bash
 # Zobacz, wyszukaj
@@ -25,12 +18,19 @@ composer require moovspace/xtra:~1.0
 }
 
 # Lub dodaj
-"repositories": [        
+"repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/moovspace/xtra"
         }
 ],
+```
+
+### Zaktualizuj zależności
+```bash
+composer update
+composer dump-autoload
+composer dump-autoload -o
 ```
 
 ### Użycie biblioteki w projekcie
@@ -78,4 +78,20 @@ try {
     print_r($e);
 }
 ?>
+```
+
+### Klonowanie repozytorium (development)
+Zainstaluj wcześniej: git i composer
+```bash
+# Klonowanie repozytorium
+git clone https://github.com/moovspace/Xtra.git
+
+# Przejdź do folderu
+cd Xtra
+
+# Aktualizacja wymaganych pakietów
+composer update
+
+# Aktualizacja skryptu automatycznego ładowania klas: vendor/autoload.php
+composer dump-autoload -o
 ```
