@@ -95,3 +95,18 @@ composer update
 # Aktualizacja skryptu automatycznego ładowania klas: vendor/autoload.php
 composer dump-autoload -o
 ```
+
+### Uprawnienia folderu (apache2 - linux debian)
+```bash
+# Zmiana właściciela
+chown -R username:www-data /var/www/html
+
+# Prawa do zapisu i odczytu dla właściciela i grupy
+chmod -R 775 /var/www/html
+
+# Lub dodaj swojego użytkownika do grupy: www-data
+usermod -a -G www-data username
+
+# Usuń usera z grupy
+deluser username www-data
+```
