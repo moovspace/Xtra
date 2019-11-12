@@ -1,0 +1,57 @@
+L1| Błędne dane autoruzacji.
+L2| Jesteś zalogowany.
+L3| Nie jesteś zalogowany! Błąd autoryzacji.
+L4| Zaloguj
+L5| Utwórz konto
+REGISTER| Zarejestruj
+LOGIN| Zaloguj
+
+IN_PASS| Podaj hasło
+IN_EMAIL| Podaj e-mail adres
+IN_USERNAME| Podaj nazwę użytkownika
+
+A1| Wiadomosć aktywacyjna została wyslana.Naciśnij na link w wiadomości e-mail lub zresetuj hasło.
+A2| AKtywacja konta.
+A3| Konto zostało aktywowane.
+A4| Konto zostało aktywowane. jeżeli jest coś nie tak zresetuj hasło.
+A5| Błędny kod.
+
+P1| Twoje nowe hasło.
+P2| Hasło zostało wysłane.
+
+R1| Uzupełnij wszystkie pola formularza.
+R2| Podaj poprawny adres e-mail.
+R3| Użytkownik z takim adresem e-mail już istnieje.
+R4| Użytkownik istnieje lub użyto niedozwolonych znaków (cyfry, litery, .(kropka), _).
+R5| Hasło powinno posiadać min. 8 znaków.
+R6| Konto zostało utworzone. Link aktywacyjny został wysłany na podany adres e-mail.
+R7| Nie można utworzyć użytkownika lub adres e-mail jest już zajęty.
+R8| Konto jest już aktywne.
+R9| Spróbuj później z poprawnym aadresem e-mail.
+
+E1| Dzień dobry! Możesz aktywować swoje konto.
+
+EMAIL1| Niepoprawny adres email!
+EMAIL2| Niepoprawna nazwa użytkownika
+EMAIL3| Popraw hasło (minimum 8 characters)
+EMAIL4| Napisz cos o sobie (min. 1 znak, max.100 znaków)
+EMAIL5| Zaakceptuj regulamin!
+EMAIL6| Hasła muszą być identyczne!
+EMAIL7| Formularz został wysłany!
+EMAIL0| Podaj poprawny adres e-mail
+USER0| Tylko litery, cyfry i kropka
+PASS0| Hasło minimum 8 znaków
+UPDATE_USER| Profil użytkownika został zaktualizowany.
+UPDATE_ERR| Profil jest już zaktualizowany.
+UPDATE_PASS| Hasło zaktualizowane. Miłego dnia.
+UPDATE_PASS_ERR| Uzupełnij poprawnie wszystkie pola formularza.
+UPDATE_PRODUCT_CAT| Kategoria została dodana.
+UPDATE_PRODUCT_CAT_ERR| Kategoria o takiej nazwie już istnieje.
+UPDATE_PRODUCT| Utworzono nowy produkt.
+UPDATE_PRODUCT_ERR| Produkt o takiej nazwie istnieje.
+UPDATE_ADDON| Dodatek utworzony.
+UPDATE_ADDON_ERR| Dodatek już istnieje.
+UPDATE_GROUP| Grupa utworzona.
+UPDATE_GROUP_ERR| Grupa już istnieje.
+
+TRANSEND|

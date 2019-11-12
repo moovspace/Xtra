@@ -1,0 +1,57 @@
+L1| Invalid credentials.
+L2| User has been logged.
+L3| User not logged! Invalid user data.
+L4| Login
+L5| Register account
+REGISTER| Register
+LOGIN| Login
+
+IN_PASS| Enter password
+IN_EMAIL| Enter e-mail address
+IN_USERNAME| Enter username
+
+A1| Activation message has been send. Click activation link from message or reset password for resend email.
+A2| Account activation.
+A3| Account has been activated.
+A4| Account has been activated. If something is wrong, try to recover the password.
+A5| Error code.
+
+P1| Your new password.
+P2| Your new password has been send.
+
+R1| Enter all fields.
+R2| Error email address.
+R3| User with this email address exist.
+R4| Error username or username exists (Allowed characters numbers, letters, dot, underscore).
+R5| Invalid password length, min. 8 characters.
+R6| User account has been created. Confirm e-mail address.
+R7| Can not create user or user with this email address exist.
+R8| Activation error or account activated.
+R9| Try again later with correct email address.
+
+E1| Hi! You can now activate account.
+
+EMAIL1| Error email address
+EMAIL2| Error username
+EMAIL3| Error password (minimum 8 characters)
+EMAIL4| Error about (min. 1 character, max.100 characters)
+EMAIL5| Accept regulations
+EMAIL6| Repeat correct password!
+EMAIL7| Form has been send!
+EMAIL0| Enter valid e-mail address
+USER0| Only letters, numbers and dot
+PASS0| Password minimum 8 characters
+UPDATE_USER| User profil has been updated.
+UPDATE_ERR| Can't update profil. 
+UPDATE_PASS| Password has been updated. 
+UPDATE_PASS_ERR| Can't update password. 
+UPDATE_PRODUCT_CAT| Category has been added.
+UPDATE_PRODUCT_CAT_ERR| You have got this category.
+UPDATE_PRODUCT| Product has been created.
+UPDATE_PRODUCT_ERR| Product with this name exists.
+UPDATE_ADDON| Addon has been created.
+UPDATE_ADDON_ERR| Addon exists.
+UPDATE_GROUP| Group has been created.
+UPDATE_GROUP_ERR| Group exists.
+
+TRANSEND|
