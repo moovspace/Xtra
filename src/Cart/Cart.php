@@ -136,9 +136,12 @@ try{
 	$a1[] = new CartProduct(1, 'Sos', 1.5, 0, 1);
 	$a2[] = new CartProduct(11, 'Ser', 1.5, 0, 1);
 
+	// Attributes
+	$attr = ['size' => 'M', 'color' => 'green'];
+
 	// Regural Products with addons and atributes
 	$p1 = new CartProduct(3, 'Pizza duża', 1.5, 0, 1, $a1);
-	$p2 = new CartProduct(2, 'Pizza mała', 1.5, 1.3, 1, $a2);
+	$p2 = new CartProduct(2, 'Pizza mała', 1.5, 1.3, 1, $a2, $attr);
 
 	$delivery_min = 50;
 	$delivery_cost = 5;
