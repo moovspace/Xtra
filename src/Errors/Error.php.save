@@ -1,0 +1,17 @@
+<?php
+namespace App\Errors;
+
+/**
+ * ErrorLogin class
+ */
+class ErrorLogin extends SplEnum
+{
+    const __default = self::EMPTY;
+
+    // For Translate\Trans class
+    const EMPTY = 'ERRORLOGIN_EMPTY'; // Empty login, pas
+    const AUTH = 'ERRORLOGIN_AUTH'; // Error credentials    
+    const NOEXIST = 'ERRORLOGIN_NOEXIST'; // User not exists
+
+}
+?>

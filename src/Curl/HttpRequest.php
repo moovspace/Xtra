@@ -1,9 +1,10 @@
-<?
+<?php
 namespace Xtra\Curl;
+use \Exception;
 
 class HttpRequest
 {
-    static function HttpPost ($url, $data, $json = false, $selfsigned = false, $token = '', $user = '', $pass = ''){
+    static function HttpPost ($url, $data, $json = false, $selfsigned = false, $token = '', $cookie = '', $user = '', $pass = '', $timeout = 60){
 
         $data_url = http_build_query ($data);
         $data_len = strlen ($data_url);
@@ -22,6 +23,10 @@ class HttpRequest
 
         if(!empty($token)){
             $token = "Authorization: Bearer ".$token;
+        }
+
+        if(!empty($cookie)){
+            $cookie = "Cookie: ".$cookie."\r\n";
         }
 
         if($selfsigned == true){
@@ -44,24 +49,24 @@ class HttpRequest
                     stream_context_create (
                         array (
                             'ssl' => $ssl,
-                            'http'=>
+                            'http' =>
                             array (
-                                'timeout' => 60,
-                                'method'=> 'POST'
-                                , 'header'=>
+                                'timeout' => (int) $timeout,
+                                'method' => 'POST',
+                                'protocol_version' => '1.1',
+                                'header' =>
                                         $content .
                                         "Access-Control-Allow-Origin: *".
                                         "X-Frame-Options: sameorigin".
                                         "Connection: close\r\n"
                                         ."Content-Length: $data_len\r\n"
-                                        .$auth
-                                        .$token
-                                , 'content'=>$data_url
+                                        .$auth.$cookie.$token,
+                                'content' => $data_url
                             )
                         )
                     )
                 )
-            ,'headers'=>$http_response_header
+            ,'headers' => $http_response_header
         );
     }
 }

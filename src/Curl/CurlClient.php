@@ -233,22 +233,6 @@ class CurlClient
         // Response
         return $this->Result;
     }
-
-    /**
-     * Context stream sample
-     */
-    function ContextStream($url = "localhost", $data = array('id' => 789, 'message' => 'Hello there'), $token = 'h43jgtn3fyn384'){
-		$context = stream_context_create(array(
-		    'http' => array(
-		        'method' => 'POST',
-		        'protocol_version' => '1.1',
-		        'header' => "Authorization: Bearer ".$token."\r\n".
-		        			"Content-Type: application/json\r\n",
-		        'content' => json_encode($data)
-		    )
-		));
-		return fopen($url, 'r', false, $context);
-	}
 }
 
 /*
