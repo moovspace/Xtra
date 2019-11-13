@@ -22,6 +22,7 @@ class CartProduct
 		if($count < 1){ throw new Exception("Error product count", 4); }
 		if($price_sale < 0){ throw new Exception("Error product sale price", 5); }
 		if(!is_array($addons) || !is_array($attr)){ throw new Exception("Error addons or attr must be an array", 6); }
+		if($price_sale >= $price){ throw new Exception("Error product sale price must be lower than price", 7); }
 
 		$this->Id = $id;
 		$this->Name = $name;
