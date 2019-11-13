@@ -5,9 +5,6 @@
     "license": "MIT",
     "version": "1.0.0",
     "minimum-stability": "dev",
-    "require": {
-        "phpmailer/phpmailer": "^6.1"
-    },
     "autoload": {
         "psr-4": {
             "Xtra\\": "src/"
@@ -17,5 +14,16 @@
         "email": "user@email.here",
         "wiki": "https://domain.here",
         "docs": "https://domain.here"
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.1"
+    },
+	"autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8"
     }
 }

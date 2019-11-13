@@ -16,7 +16,5 @@ spl_autoload_register(function($class) {
 });
 
 // Php settings, start session after class load !!!!!
-if(file_exists('php-ini.php')){
-        require_once('php-ini.php');
-}
+include('php-ini.php');
 ?>
