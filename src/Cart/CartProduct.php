@@ -34,8 +34,6 @@ class CartProduct
 		foreach ($addons as $k => $a) {
 			$this->AddonAdd($a);
 		}
-		// Cost
-		$this->Cost();
 	}
 
 	function Id(){
