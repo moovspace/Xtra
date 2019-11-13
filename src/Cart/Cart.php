@@ -57,9 +57,9 @@ class Cart
 	}
 
 	function Hash($product){
-		$s1 = json_encode($product->Id);
-		$s2 = json_encode($product->Attributes);
-		$s3 = json_encode($product->Addons);
+		$s1 = json_encode($product->Id());
+		$s2 = json_encode($product->Attributes());
+		$s3 = json_encode($product->Addons());
 		return md5($s1.$s2.$s3);
 	}
 

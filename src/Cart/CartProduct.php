@@ -4,17 +4,17 @@ use \Exception;
 
 class CartProduct
 {
-	public $Id = '';
-	public $Name = '';
-	public $Price = 0;
-	public $PriceSale = 0;
-	public $Count = 1;
-	public $Cost = 0;
-	public $CostProduct = 0;
-	public $CostAddons = 0;
+	protected $Id = '';
+	protected $Name = '';
+	protected $Price = 0;
+	protected $PriceSale = 0;
+	protected $Count = 1;
+	protected $Cost = 0;
+	protected $CostProduct = 0;
+	protected $CostAddons = 0;
 	// Only in regular product
-	public $Attributes = null; // Description, color, size ...
-	public $Addons = null; // CartProducts array
+	protected $Attributes = null; // Description, color, size ...
+	protected $Addons = null; // CartProducts array
 
 	function __construct($id, $name, $price, $price_sale = 0, $count = 1, $addons = [], $attr = [])
 	{
@@ -37,6 +37,18 @@ class CartProduct
 		}
 		// Cost
 		$this->Cost();
+	}
+
+	function Id(){
+		return $this->Id;
+	}
+
+	function Addons(){
+		return $this->Addons;
+	}
+
+	function Attributes(){
+		return $this->Attributes;
 	}
 
 	function Plus(){
