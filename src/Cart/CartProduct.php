@@ -4,15 +4,14 @@ use \Exception;
 
 class CartProduct
 {
-	protected $Id = '';
-	protected $Name = '';
-	protected $Price = 0;
-	protected $PriceSale = 0;
-	protected $Count = 1;
-
+	public $Count = 1;
+	public $Id = '';
+	public $Name = '';
+	public $Price = 0;
+	public $PriceSale = 0;
 	// Only in regular product
-	protected $Attributes = null; // Description, color, size ...
-	protected $Addons = null; // CartProducts array
+	public $Attributes = null; // Description, color, size ...
+	public $Addons = null; // CartProducts array
 
 	function __construct($id, $name, $price, $price_sale = 0, $count = 1, $addons = [], $attr = [])
 	{
@@ -23,7 +22,6 @@ class CartProduct
 		if($price_sale < 0){ throw new Exception("Error product sale price", 5); }
 		if(!is_array($addons) || !is_array($attr)){ throw new Exception("Error addons or attr must be an array", 6); }
 		if($price_sale >= $price){ throw new Exception("Error product sale price must be lower than price", 7); }
-
 		$this->Id = $id;
 		$this->Name = $name;
 		$this->Price = (float) $price;
@@ -35,46 +33,36 @@ class CartProduct
 			$this->AddonAdd($a);
 		}
 	}
-
 	function Id(){
 		return $this->Id;
 	}
-
 	function Name(){
 		return $this->Name;
 	}
-
 	function Price(){
 		return $this->Price;
 	}
-
 	function PriceSale(){
 		return $this->PriceSale;
 	}
-
 	function Addons(){
 		return $this->Addons;
 	}
-
 	function Count(){
 		return $this->Count;
 	}
-
 	function Attributes(){
 		return $this->Attributes;
 	}
-
 	function Plus(){
 		$this->Count++;
 	}
-
 	function Minus(){
 		$this->Count--;
 		if($this->Count < 1){
 			$this->Count = 1;
 		}
 	}
-
 	function AddonAdd($addon){
 		if($addon instanceof CartProduct){
 			unset($addon->Addons); // Remove addons from product
@@ -83,11 +71,9 @@ class CartProduct
 			throw new Exception("Error addon. Add CartProduct() object without addons", 1);
 		}
 	}
-
 	function AddonRemove($id){
 		unset($this->Addons[$id]);
 	}
-
 	function AddonPlus($id){
 		$a = $this->Addons[$id];
 		if($a != null){
@@ -96,7 +82,6 @@ class CartProduct
 			$this->Addons[$id] = $a;
 		}
 	}
-
 	function AddonMinus($id){
 		$a = $this->Addons[$id];
 		if($a != null){
@@ -105,11 +90,9 @@ class CartProduct
 			$this->Addons[$id] = $a;
 		}
 	}
-
 	function Cost(){
 		return $this->CostProduct() + $this->CostAddons();
 	}
-
 	function CostProduct(){
 		$price = 0;
 		if($this->PriceSale > 0 && $this->PriceSale < $this->Price){
@@ -119,7 +102,6 @@ class CartProduct
 		}
 		return $price;
 	}
-
 	function CostAddons(){
 		$price = 0;
 		// Addons it is product

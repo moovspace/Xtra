@@ -1,7 +1,6 @@
 <?php
 namespace Xtra\Cart;
 use \Exception;
-use Xtra\Cart\CartProduct;
 
 class Cart
 {
@@ -42,13 +41,18 @@ class Cart
 	}
 
 	function Plus($id){
-		$_SESSION['cart'][$this->CartId]['products'][$id]->Count++;
+		$pr = $_SESSION['cart'][$this->CartId]['products'][$id];
+		if($pr instanceof CartProduct){
+			$pr->Count++;
+			$_SESSION['cart'][$this->CartId]['products'][$id] = $pr;
+		}
 	}
 
 	function Minus($id){
-		$_SESSION['cart'][$this->CartId]['products'][$id]->Count--;
-		if($_SESSION['cart'][$this->CartId]['products'][$id]->Count < 1){
-			$_SESSION['cart'][$this->CartId]['products'][$id]->Count = 1;
+		$pr = $_SESSION['cart'][$this->CartId]['products'][$id];
+		if($pr instanceof CartProduct && $pr->Count > 1){
+			$pr->Count--;
+			$_SESSION['cart'][$this->CartId]['products'][$id] = $pr;
 		}
 	}
 
@@ -78,7 +82,7 @@ class Cart
 		foreach ($pr as $p) {
 			$sum += $p->Cost();
 		}
-		return $this->CostProducts = $sum;
+		return $sum;
 	}
 
 	function CostCheckout(){
