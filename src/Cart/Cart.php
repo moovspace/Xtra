@@ -10,8 +10,6 @@ class Cart
 	protected $CostCheckout = 0;
 	protected $Discount = 0;
 	protected $Coupon = '';
-	protected $Products = null;
-	protected $Cart = array();
 
 	function __construct($id = 1, $delivery_min = 0, $delivery_cost = 0, $currency = 'PLN'){
 		$this->CartId = $id;
@@ -40,12 +38,11 @@ class Cart
 	}
 
 	function GetProducts(){
-		return $this->Products = $_SESSION['cart'][$this->CartId]['products'];
+		return $_SESSION['cart'][$this->CartId]['products'];
 	}
 
 	function Plus($id){
 		$_SESSION['cart'][$this->CartId]['products'][$id]->Count++;
-		$this->GetProducts();
 	}
 
 	function Minus($id){
@@ -53,7 +50,6 @@ class Cart
 		if($_SESSION['cart'][$this->CartId]['products'][$id]->Count < 1){
 			$_SESSION['cart'][$this->CartId]['products'][$id]->Count = 1;
 		}
-		$this->GetProducts();
 	}
 
 	function Hash($product){
@@ -67,7 +63,6 @@ class Cart
 		if($product instanceof CartProduct){
 			$id = $this->Hash($product);
 			$_SESSION['cart'][$this->CartId]['products'][$id] = $product;
-			$this->GetProducts();
 		}else{
 			throw new Exception("Error product class", 1);
 		}
@@ -75,7 +70,6 @@ class Cart
 
 	function Remove($id){
 		unset($_SESSION['cart'][$this->CartId]['products'][$id]);
-		$this->GetProducts();
 	}
 
 	function CostProducts(){
@@ -103,9 +97,8 @@ class Cart
 	}
 
 	function QuantityAll(){
-		$pr = $_SESSION['cart'][$this->CartId]['products'];
 		$cnt = 0;
-		foreach ($pr as $v) {
+		foreach ($this->GetProducts() as $v) {
 			$cnt += $v->Count;
 		}
 		return $cnt;

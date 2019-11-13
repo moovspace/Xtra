@@ -9,9 +9,7 @@ class CartProduct
 	protected $Price = 0;
 	protected $PriceSale = 0;
 	protected $Count = 1;
-	protected $Cost = 0;
-	protected $CostProduct = 0;
-	protected $CostAddons = 0;
+
 	// Only in regular product
 	protected $Attributes = null; // Description, color, size ...
 	protected $Addons = null; // CartProducts array
@@ -43,8 +41,24 @@ class CartProduct
 		return $this->Id;
 	}
 
+	function Name(){
+		return $this->Name;
+	}
+
+	function Price(){
+		return $this->Price;
+	}
+
+	function PriceSale(){
+		return $this->PriceSale;
+	}
+
 	function Addons(){
 		return $this->Addons;
+	}
+
+	function Count(){
+		return $this->Count;
 	}
 
 	function Attributes(){
@@ -93,17 +107,8 @@ class CartProduct
 		}
 	}
 
-	function GetAddons(){
-		return $this->Addons;
-	}
-
-	function GetAttributes(){
-		return $this->Attributes;
-	}
-
 	function Cost(){
-		$this->Cost = $this->CostProduct() + $this->CostAddons();
-		return $this->Cost;
+		return $this->CostProduct() + $this->CostAddons();
 	}
 
 	function CostProduct(){
@@ -113,7 +118,7 @@ class CartProduct
 		}else{
 			$price = $this->Price * $this->Count;
 		}
-		return $this->CostProduct = $price;
+		return $price;
 	}
 
 	function CostAddons(){
@@ -126,7 +131,7 @@ class CartProduct
 				$price += $a->Price * $a->Count;
 			}
 		}
-		return $this->CostAddons = $price;
+		return $price;
 	}
 }
 ?>
