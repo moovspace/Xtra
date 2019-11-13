@@ -121,6 +121,9 @@ class Cart
 
 <?php
 /*
+// Start session after include autoload.php
+session_start();
+
 use Xtra\Cart\Cart;
 use Xtra\Cart\CartProduct;
 
