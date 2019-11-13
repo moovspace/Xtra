@@ -14,46 +14,61 @@ class Cart
 		$this->CartId = $id;
 		$this->CartDeliveryMin = $delivery_min;
 		$this->CartDeliveryCost = $delivery_cost;
+		// Create Cart
+		$this->Load();
+		$this->Cart['delivery_min'] = $delivery_min;
+		$this->Cart['delivery_cost'] = $delivery_cost;
+		$this->Cart['currency'] = $currency;
+	}
 
-		$_SESSION['cart'][$id]['delivery_min'] = $delivery_min;
-		$_SESSION['cart'][$id]['delivery_cost'] = $delivery_cost;
-		$_SESSION['cart'][$id]['currency'] = $currency;
+	function Load(){
+		$this->Cart = $_SESSION['cart'][$this->CartId];
+	}
+
+	function Save(){
+		$_SESSION['cart'][$this->CartId] = $this->Cart;
 	}
 
 	function Clear(){
+		unset($this->Cart);
 		unset($_SESSION['cart'][$this->CartId]);
 	}
 
 	function Discount($value = 0){
 		if($value > 0){
-			$this->Discount = $_SESSION['cart'][$this->CartId]['discount'] = (float) $value;
+			$this->Discount = $this->Cart['discount'] = (float) $value;
 		}
+		$this->Save();
 	}
 
 	function Coupon($code = ''){
 		if(!empty($code)){
-			$this->Coupon = $_SESSION['cart'][$this->CartId]['cupon'] = (float) $code;
+			$this->Coupon = $this->Cart['cupon'] = (float) $code;
 		}
+		$this->Save();
 	}
 
 	function GetProducts(){
-		return $_SESSION['cart'][$this->CartId]['products'];
+		return $this->Cart['products'];
 	}
 
 	function Plus($id){
-		$pr = $_SESSION['cart'][$this->CartId]['products'][$id];
+		$pr = $this->Cart['products'][$id];
 		if($pr instanceof CartProduct){
-			$pr->Count++;
-			$_SESSION['cart'][$this->CartId]['products'][$id] = $pr;
+			// $pr->Count++;
+			$pr->Plus();
+			$this->Cart['products'][$id] = $pr;
 		}
+		$this->Save();
 	}
 
 	function Minus($id){
-		$pr = $_SESSION['cart'][$this->CartId]['products'][$id];
+		$pr = $this->Cart['products'][$id];
 		if($pr instanceof CartProduct && $pr->Count > 1){
 			$pr->Count--;
-			$_SESSION['cart'][$this->CartId]['products'][$id] = $pr;
+			$this->Cart['products'][$id] = $pr;
 		}
+		$this->Save();
 	}
 
 	function Hash($product){
@@ -66,20 +81,25 @@ class Cart
 	function Add($product){
 		if($product instanceof CartProduct){
 			$id = $this->Hash($product);
-			$_SESSION['cart'][$this->CartId]['products'][$id] = $product;
+			$this->Cart['products'][$id] = $product;
+			$this->Save();
 		}else{
 			throw new Exception("Error product class", 1);
 		}
 	}
 
 	function Remove($id){
-		unset($_SESSION['cart'][$this->CartId]['products'][$id]);
+		unset($this->Cart['products'][$id]);
+		$this->Save();
 	}
 
 	function CostProducts(){
-		$pr = $_SESSION['cart'][$this->CartId]['products'];
+		$pr = $this->Cart['products'];
 		$sum = 0;
 		foreach ($pr as $p) {
+			echo 'Id: ' . $p->Id() .' --> ' . (float) $p->Price() * (float) $p->Count() .' <br>';
+			// echo $p->CostProduct().'<br>';
+			// echo $p->CostAddons().'<br>';
 			$sum += $p->Cost();
 		}
 		return $sum;
@@ -103,20 +123,19 @@ class Cart
 	function QuantityAll(){
 		$cnt = 0;
 		foreach ($this->GetProducts() as $v) {
-			$cnt += $v->Count;
+			$cnt += $v->Count();
 		}
 		return $cnt;
 	}
 
 	function Show(){
 		echo "<pre>";
-		print_r($_SESSION['cart'][$this->CartId]);
+		print_r($this->Cart);
 		echo "</pre>";
 	}
 }
-?>
 
-<?php
+
 /*
 // Start session after include autoload.php
 session_start();
@@ -138,18 +157,21 @@ try{
 
 	// Regural Products with addons and atributes
 	$p1 = new CartProduct(3, 'Pizza duża', 1.5, 0, 1, $a1);
-	$p2 = new CartProduct(2, 'Pizza mała', 1.5, 1.3, 1, $a2, $attr);
+	$p2 = new CartProduct(1, 'Pizza mała', 1.5, 0, 1, $a2, $attr);
 
-	$delivery_min = 50;
-	$delivery_cost = 5;
+	$delivery_min = 50.00;
+	$delivery_cost = 5.00;
 
 	$c = new Cart('username', $delivery_min, $delivery_cost);
 	// $c->Discount(3.23);
-	$c->Clear();
+	// $c->Clear();
 	$c->Add($p1);
 	$c->Add($p2);
+
+	// $c->Plus('637831ac8966bdfc344185eec2a7940a');
+
 	echo "Products: " . $c->Quantity() ." Cost + delivery: " . $c->CostCheckout();
-	// $c->Show();
+	$c->Show();
 
 }catch(Exception $e){
 	echo $e->getMessage();
