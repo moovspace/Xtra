@@ -5,13 +5,13 @@ use \Exception;
 class CartProduct
 {
 	public $Count = 1;
-	public $Id = '';
-	public $Name = '';
-	public $Price = 0;
-	public $PriceSale = 0;
+	protected $Id = '';
+	protected $Name = '';
+	protected $Price = 0;
+	protected $PriceSale = 0;
 	// Only in regular product
-	public $Attributes = null; // Description, color, size ...
-	public $Addons = null; // CartProducts array
+	protected $Attributes = null; // Description, color, size ...
+	protected $Addons = null; // CartProducts array
 
 	function __construct($id, $name, $price, $price_sale = 0, $count = 1, $addons = [], $attr = [])
 	{
