@@ -97,7 +97,7 @@ class Cart
 		$pr = $this->Cart['products'];
 		$sum = 0;
 		foreach ($pr as $p) {
-			echo 'Id: ' . $p->Id() .' --> ' . (float) $p->Price() * (float) $p->Count() .' <br>';
+			// echo 'Id: ' . $p->Id() .' --> ' . (float) $p->Price() * (float) $p->Count() .' <br>';
 			// echo $p->CostProduct().'<br>';
 			// echo $p->CostAddons().'<br>';
 			$sum += $p->Cost();
