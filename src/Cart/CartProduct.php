@@ -77,7 +77,7 @@ class CartProduct
 	function AddonAdd($addon){
 		if($addon instanceof CartProduct){
 			unset($addon->Addons); // Remove addons from product
-			$this->Addons[] = $addon;
+			$this->Addons[$addon->Id()] = $addon;
 		}else{
 			throw new Exception("Error addon. Add CartProduct() object without addons", 1);
 		}
