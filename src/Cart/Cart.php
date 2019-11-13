@@ -151,17 +151,6 @@ try{
 	echo "Products: " . $c->Quantity() ." Cost + delivery: " . $c->CostCheckout();
 	// $c->Show();
 
-	$f = new Upload();
-	// $f->ValidSecretKey('myKey',$_POST['key']);
-	// $f->Files();
-	$f->AddExtension('jpg');
-	// $f->AddExtension(['gif','png']);
-	// File size
-	$f->MaxSizeMb(1);
-
-	// $files = $f->Upload("media");
-	// print_r($files);
-
 }catch(Exception $e){
 	echo $e->getMessage();
 	// echo $e->getCode();
