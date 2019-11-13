@@ -1,0 +1,120 @@
+<?php
+namespace Xtra\Cart;
+use \Exception;
+
+class CartProduct
+{
+	public $Id = '';
+	public $Name = '';
+	public $Price = 0;
+	public $PriceSale = 0;
+	public $Count = 1;
+	public $Cost = 0;
+	public $CostProduct = 0;
+	public $CostAddons = 0;
+	// Only in regular product
+	public $Attributes = null; // Description, color, size ...
+	public $Addons = null; // CartProducts array
+
+	function __construct($id, $name, $price, $price_sale = 0, $count = 1, $addons = [], $attr = [])
+	{
+		if(empty($id)){ throw new Exception("Error product id", 1); }
+		if(empty($name)){ throw new Exception("Error product name", 2); }
+		if($price < 0){ throw new Exception("Error product price", 3); }
+		if($count < 1){ throw new Exception("Error product count", 4); }
+		if($price_sale < 0){ throw new Exception("Error product sale price", 5); }
+		if(!is_array($addons) || !is_array($attr)){ throw new Exception("Error addons or attr must be an array", 6); }
+
+		$this->Id = $id;
+		$this->Name = $name;
+		$this->Price = (float) $price;
+		$this->PriceSale = (float) $price_sale;
+		$this->Count = (int) $count;
+		$this->Attributes = $attr;
+		// Addons
+		foreach ($addons as $k => $a) {
+			$this->AddonAdd($a);
+		}
+		// Cost
+		$this->Cost();
+	}
+
+	function Plus(){
+		$this->Count++;
+	}
+
+	function Minus(){
+		$this->Count--;
+		if($this->Count < 1){
+			$this->Count = 1;
+		}
+	}
+
+	function AddonAdd($addon){
+		if($addon instanceof CartProduct){
+			unset($addon->Addons); // Remove addons from product
+			$this->Addons[] = $addon;
+		}else{
+			throw new Exception("Error addon. Add CartProduct() object without addons", 1);
+		}
+	}
+
+	function AddonRemove($id){
+		unset($this->Addons[$id]);
+	}
+
+	function AddonPlus($id){
+		$a = $this->Addons[$id];
+		if($a != null){
+			$a->Count++;
+			if($a->Count < 1){ $this->Count = 1; }
+			$this->Addons[$id] = $a;
+		}
+	}
+
+	function AddonMinus($id){
+		$a = $this->Addons[$id];
+		if($a != null){
+			$a->Count--;
+			if($a->Count < 1){ $this->Count = 1; }
+			$this->Addons[$id] = $a;
+		}
+	}
+
+	function GetAddons(){
+		return $this->Addons;
+	}
+
+	function GetAttributes(){
+		return $this->Attributes;
+	}
+
+	function Cost(){
+		$this->Cost = $this->CostProduct() + $this->CostAddons();
+		return $this->Cost;
+	}
+
+	function CostProduct(){
+		$price = 0;
+		if($this->PriceSale > 0 && $this->PriceSale < $this->Price){
+			$price = $this->PriceSale * $this->Count;
+		}else{
+			$price = $this->Price * $this->Count;
+		}
+		return $this->CostProduct = $price;
+	}
+
+	function CostAddons(){
+		$price = 0;
+		// Addons it is product
+		foreach ($this->Addons as $k => $a) {
+			if($a->PriceSale > 0 && $a->PriceSale < $a->Price){
+				$price += $a->PriceSale * $a->Count;
+			}else{
+				$price += $a->Price * $a->Count;
+			}
+		}
+		return $this->CostAddons = $price;
+	}
+}
+?>
