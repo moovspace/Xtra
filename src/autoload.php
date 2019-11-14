@@ -5,7 +5,7 @@ spl_autoload_register(function($class) {
 	// $class = $_SERVER['DOCUMENT_ROOT'].'/src/' . str_replace('\\', '/', $class) . '.php';
 	// Load from current folder
 	$class = str_replace("Xtra","",$class); // remove Xtra
-	$class = ltrim($class,'\');
+	$class = ltrim($class,"\\");
 	$class = str_replace('\\', '/', $class) . '.php';
 	// Load class if exists
 	if (file_exists($class)) {
