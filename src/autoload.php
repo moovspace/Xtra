@@ -14,7 +14,6 @@ spl_autoload_register(function($class) {
 		}
 	}
 });
-
 // Php settings, start session after class load !!!!!
 include('php-ini.php');
 ?>
