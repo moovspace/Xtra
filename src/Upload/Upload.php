@@ -13,6 +13,11 @@ use \Exception;
  *  <input type="file" name="file">
  *  <input type="submit" value="Send">
  * </form>
+ *
+ * // Add file php.user.ini to directory or change php.ini
+ * post_max_size = 500M
+ * upload_max_filesize = 500M
+ * memory_limit = 1G
  */
 class Upload
 {
@@ -21,11 +26,7 @@ class Upload
     protected $SecretKey = '';
     protected $FilesLimit = 5;
 
-    function __construct(){
-        // php.ini
-        ini_set('post_max_size', $this->MaxSizeMb.'M');
-        ini_set('upload_max_filesize', $this->MaxSizeMb.'M');
-    }
+    function __construct(){}
 
     /**
      * ValidSecretKey Authentication method
@@ -62,9 +63,6 @@ class Upload
         $mb = (int) $mb;
         if($mb <= 0){ $mb = 10; }
         $this->MaxSizeMb = $mb;
-        // php.ini
-        ini_set('post_max_size', ($mb+$mb).'M');
-        ini_set('upload_max_filesize', $mb.'M');
     }
 
     function GetFiles(){

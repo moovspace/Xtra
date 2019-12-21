@@ -43,7 +43,7 @@ class DownloadFile
         while (!feof($fh)) {
             echo fread($fh, $this->Speed);
             ob_flush();
-            // Download spees
+            // Download speed
             sleep(1);
         }
         exit;
